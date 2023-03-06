@@ -1,0 +1,13 @@
+{% extends 'base_auth.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}register{% endblock %}
+
+{% block content %}
+<h3 class="mb-3 text-center">Register</h3>
+{% include 'partials/_messages.html' %}
+
+{%crispy form%}
+
+{% endblock %}
