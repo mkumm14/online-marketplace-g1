@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+
+    All products
+    
+{% endblock title %}
+    
+
+{% block content %}
+    <h1>all products</h1>
+    
+    {% if products %}
+        
+        {% for product in products  %}
+            <li>{{product.name}}</li>
+        {% endfor %}
+    {% else %}
+        <p>no items exist</p>
+            
+        
+    {% endif %}
+        
+{% endblock content %}
+    
