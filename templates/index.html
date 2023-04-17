@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>MMAAS Shopping Website</title>
+        <title>MMAAS Shopping</title>
         {% comment %} <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> {% endcomment %}
         <!-- Bootstrap icons-->
@@ -22,7 +22,7 @@
                         <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ms-auto">
                                 {% if user.is_authenticated %}
-                                    <p class="nav-item"><span class="nav-link">{{user.username}}</span></p>
+                                    <li class="nav-item"><span class="nav-link">{{user.username}}</span></li>
                                  <li class="nav-item"><a class="nav-link" href="{% url 'main:logout' %}">Log Out</a></li>
                                 {% else %}
                                 <li class="nav-item"><a class="nav-link" href="{% url 'main:register' %}">Sign Up</a></li>
