@@ -21,11 +21,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
 class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     transaction_id = models.CharField(max_length=200, null=True)
