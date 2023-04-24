@@ -28,3 +28,11 @@ def cart(request):
         'cart_items': cart_items,
     }
     return render(request, 'cart/cart.html', context)
+
+
+
+def remove_from_cart(request, cart_item_id):
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    if request.user == cart_item.cart.user:
+        cart_item.delete()
+    return redirect('cart')
