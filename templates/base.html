@@ -102,11 +102,11 @@
                 </form>
                 <!-- Add the htmx attributes to the cart button -->
                 <form class="d-flex">
-                    <button class="btn btn-outline-light ms-2" type="submit">
+                    <a href="{% url 'cart' %}" class="btn btn-outline-light ms-2">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
                         <span class="badge bg-light text-black ms-1 rounded-pill">{{ cart_quantity }}</span>
-                    </button>                    
+                    </a>                    
                 </form>
 
                 <div class="dropdown">
