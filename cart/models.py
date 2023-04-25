@@ -18,6 +18,11 @@ class Cart(models.Model):
     items = models.ManyToManyField(Product, through='CartItem')
     discount = models.ForeignKey(Discount, on_delete=models.SET_NULL, null=True, blank=True)
 
+    def get_total_cost(self):
+        cart_items = self.cartitem_set.all()
+        total_cost = sum(item.discounted_price or item.total_price for item in cart_items)
+        return total_cost
+
 
 
 class CartItem(models.Model):
