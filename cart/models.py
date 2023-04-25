@@ -32,9 +32,12 @@ class CartItem(models.Model):
 
     def save(self, *args, **kwargs):
         self.total_price = self.product.price * self.quantity
+        self.update_discounted_price()
+        super().save(*args, **kwargs)
+
+    def update_discounted_price(self):
         if self.cart.discount:
             discount_amount = self.total_price * self.cart.discount.discount_percentage / 100
             self.discounted_price = self.total_price - discount_amount
         else:
             self.discounted_price = None
-        super().save(*args, **kwargs)
