@@ -36,3 +36,22 @@ def remove_from_cart(request, cart_item_id):
     if request.user == cart_item.cart.user:
         cart_item.delete()
     return redirect('cart')
+
+
+def increase_cart_item(request, cart_item_id):
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    if request.user == cart_item.cart.user:
+        cart_item.quantity += 1
+        cart_item.save()
+    return redirect('cart')
+
+
+def decrease_cart_item(request, cart_item_id):
+    cart_item = get_object_or_404(CartItem, id=cart_item_id)
+    if request.user == cart_item.cart.user:
+        cart_item.quantity -= 1
+        if cart_item.quantity == 0:
+            cart_item.delete()
+        else:
+            cart_item.save()
+    return redirect('cart')
