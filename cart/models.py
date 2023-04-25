@@ -6,8 +6,6 @@ from product.models import Product
 class Discount(models.Model):
     code = models.CharField(max_length=20, unique=True)
     discount_percentage = models.DecimalField(max_digits=3, decimal_places=2)
-    valid_from = models.DateTimeField()
-    valid_to = models.DateTimeField()
 
     def __str__(self):
         return self.code
