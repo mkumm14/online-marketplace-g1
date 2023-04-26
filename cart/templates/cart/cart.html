@@ -83,22 +83,7 @@
             </div>
 
 
-            {% if messages %}
-            <div class="container mt-3">
-                <div class="row">
-                    <div class="col-md-8">
-                        {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                            {{ message }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
+           {% include 'partials/_messages.html' %}
             <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><a href='#' class="btn btn-warning btn-block btn-lg ml-2 pay-button">Proceed to Pay</a></div>
         </div>
     </div>
