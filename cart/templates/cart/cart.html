@@ -20,8 +20,6 @@
                 <div class="d-flex flex-column align-items-center product-details"><span
                         class="font-weight-bold">{{item.product.name}}</span>
                     <div class="d-flex flex-row product-desc">
-                        <div class="size mr-1"><span class="text-grey">Size:</span><span
-                                class="font-weight-bold">&nbsp;M</span></div>
                         <div class="color"><span class="text-grey">Category:</span><span class="font-weight-bold">&nbsp;
                                 {% for category in item.product.categories.all %}
                                 {{category.name}}
@@ -90,9 +88,9 @@
                         {% for message in messages %}
                         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                             {{ message }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </button>-->
                         </div>
                         {% endfor %}
                     </div>
