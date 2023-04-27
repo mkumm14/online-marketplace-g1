@@ -23,3 +23,10 @@ urlpatterns = [
     path('products/', include('product.urls')),
     path('cart/', include('cart.urls'))
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+
+
+admin.site.site_header = 'MMAAS Administration'                    # default: "Django Administration"
+admin.site.index_title = 'MMAAS Admin'                 # default: "Site administration"
+admin.site.site_title = 'Admistration for MMAAS app' # default: "Django site admin"
