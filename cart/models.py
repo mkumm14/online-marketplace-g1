@@ -41,3 +41,35 @@ class CartItem(models.Model):
             self.discounted_price = self.total_price - discount_amount
         else:
             self.discounted_price = None
+
+
+class ShippingAddress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address_line_1 = models.CharField(max_length=255)
+    address_line_2 = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f"{self.address_line_1}, {self.city}, {self.state}, {self.zip_code}"
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    card_number = models.CharField(max_length=19)
+    card_expiry = models.CharField(max_length=7)
+    card_cvv = models.CharField(max_length=4)
+
+    def __str__(self):
+        return f"Card ending in {self.card_number[-4:]}"
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE)
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"Order {self.pk} by {self.user.username}"

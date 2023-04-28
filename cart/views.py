@@ -1,8 +1,12 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Cart, CartItem, Discount
+from .models import Product, Cart, CartItem, Discount, Order, ShippingAddress, Payment
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from decimal import Decimal
+
+from .forms import ShippingAddressForm, PaymentForm
+
 
 # Create your views here.
 
@@ -44,8 +48,13 @@ def remove_from_cart(request, cart_item_id):
 def increase_cart_item(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     if request.user == cart_item.cart.user:
-        cart_item.quantity += 1
-        cart_item.save()
+        product = cart_item.product
+        if product.quantity > cart_item.quantity:
+            cart_item.quantity += 1
+            cart_item.save()
+        else:
+            messages.error(request, "Insuffucient stock.")
+            return redirect('cart')
     return redirect('cart')
 
 
@@ -99,3 +108,55 @@ def remove_discount(request):
 
     messages.success(request, "Discount removed successfully.")
     return redirect('cart')
+
+
+
+
+def checkout(request):
+    if request.method == 'POST':
+        address_form = ShippingAddressForm(request.POST, prefix='address')
+        payment_form = PaymentForm(request.POST, prefix='payment')
+        if address_form.is_valid() and payment_form.is_valid():
+            shipping_address = address_form.save(commit=False)
+            shipping_address.user = request.user
+            shipping_address.save()
+
+            payment = payment_form.save(commit=False)
+            payment.user = request.user
+            payment.save()
+
+            user = request.user
+            cart = Cart.objects.get(user=user)
+            total_cost = cart.get_total_cost() * Decimal('1.0825')  # Add 8.25% sales tax
+
+            order = Order.objects.create(user=user, shipping_address=shipping_address, payment=payment, total_cost=total_cost)
+            
+            cart_items = CartItem.objects.filter(cart=cart)
+            for item in cart_items:
+                product = item.product
+                product.quantity -= item.quantity
+                product.save()
+
+            # Clear the user's cart
+            CartItem.objects.filter(cart=cart).delete()
+            cart.discount = None
+            cart.save()
+
+            return redirect('order_success')
+    else:
+        address_form = ShippingAddressForm(prefix='address')
+        payment_form = PaymentForm(prefix='payment')
+
+    cart = Cart.objects.get(user=request.user)
+    total_cost = cart.get_total_cost()
+    total_price_with_tax = total_cost * Decimal('1.085')
+    context = {
+        'address_form': address_form,
+        'payment_form': payment_form,
+        'total_price_with_tax': total_price_with_tax,
+    }   
+    return render(request, 'checkout/checkout.html', context)
+
+
+def order_success(request):
+    return render(request, 'checkout/order_success.html')
