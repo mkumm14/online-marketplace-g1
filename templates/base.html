@@ -84,9 +84,7 @@
                             href="{% url 'main:home' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page"
                             href="{% url 'main:about' %}">About</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="#!">About</a></li> -->
-                    <li class="nav-item"><a class="nav-link active" aria-current="page"
-                        href="{% url 'products' %}">Shop</a></li>
+             
                 </ul>
                 {% if user.is_authenticated %}
                 <!-- IDK how to do the search so I'm just getting rid of it. You can add it back if you want.
