@@ -70,6 +70,8 @@ class Order(models.Model):
     shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE)
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now=True)  # Add this line
+
 
     def __str__(self):
         return f"Order {self.pk} by {self.user.username}"
