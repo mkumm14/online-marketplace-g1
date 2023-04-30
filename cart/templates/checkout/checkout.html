@@ -12,7 +12,6 @@
             {{ address_form|crispy }}
             <h3>Payment Information</h3>
             {{ payment_form|crispy }}
-          </form>
         </div>
       </div>
     </div>
@@ -21,10 +20,10 @@
         <div class="card-body">
           <h4>Total Price (including 8.25% sales tax): ${{ total_price_with_tax|floatformat:2 }}</h4>
           <hr>
-          <form method="post" action="{% url 'checkout' %}">
-            {% csrf_token %}
+
             <button type="submit" class="btn btn-primary">Place Order</button>
           </form>
+      
         </div>
       </div>
     </div>

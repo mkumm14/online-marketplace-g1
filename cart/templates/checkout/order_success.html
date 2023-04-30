@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Order placed successfully!</h2>
-    <p>Thank you for your order. Your order has been successfully placed and is being processed.</p>
-    <a href="{% url 'main:home' %}">Return to Home</a>
+  <div class="container text-center mt-5">
+    <h2 class="mb-3">Order Placed Successfully!</h2>
+    <p class="lead">Thank you for your order. Your order has been successfully placed and is being processed.</p>
+    <hr>
+    <a href="{% url 'main:home' %}" class="btn btn-secondary">Return to Home</a>
+  </div>
 {% endblock %}
