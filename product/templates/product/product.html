@@ -26,11 +26,10 @@
                 </div>
                 <p class="lead">{{product.description}}</p>
                 <div class="d-flex">
-                    <input class="form-control border-2 text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                    <a class="btn btn-outline-dark flex-shrink-0" href="{% url 'add_to_cart' product.id %}">
                         <i class="bi-cart-fill me-1"></i>
                         Add to cart
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
