@@ -160,3 +160,13 @@ def checkout(request):
 
 def order_success(request):
     return render(request, 'checkout/order_success.html')
+
+
+@login_required
+def order_history(request):
+    user = request.user
+    orders = Order.objects.filter(user=user).order_by('-created_at')
+    context = {
+        'orders': orders,
+    }
+    return render(request, 'order/order_history.html', context)
