@@ -20,6 +20,9 @@ class Cart(models.Model):
         cart_items = self.cartitem_set.all()
         total_cost = sum(item.discounted_price or item.total_price for item in cart_items)
         return total_cost
+    
+    def __str__(self):
+        return f"{self.user}'s cart"
 
 
 
