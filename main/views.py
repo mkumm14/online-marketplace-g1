@@ -67,7 +67,7 @@ def register_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, "account created successfully. Please log in.")
-            return redirect('login')
+            return redirect('main:login')
     else:
         form=RegisterForm()
 

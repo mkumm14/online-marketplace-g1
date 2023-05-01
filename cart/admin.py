@@ -5,6 +5,5 @@ from .models import Discount, Cart, CartItem,Order,Payment,ShippingAddress
 admin.site.register(Discount)
 admin.site.register(Payment)
 admin.site.register(ShippingAddress)
-admin.site.register(CartItem)
 admin.site.register(Order)
 
