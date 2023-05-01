@@ -3,7 +3,7 @@
 {% block content %}
   <h2 class="text-center">Order History</h2>
   <div class="p-5">
-  <table class="table ">
+  <table class="table " id="myTable">
     <thead>
       <tr>
         <th scope="col">Order ID</th>
@@ -16,7 +16,7 @@
       {% for order in orders %}
         <tr>
           <td>{{ order.pk }}</td>
-          <td>{{ order.created_at|date:"F j, Y, P" }}</td>
+          <td>{{ order.created_at|date:"M j, Y"  }}</td>
           <td>{{ order.shipping_address }}</td>
           <td>${{ order.total_cost }}</td>
         </tr>
