@@ -8,6 +8,7 @@ django = "*"
 crispy-bootstrap5 = "*"
 pillow = "*"
 django-jazzmin = "*"
+django-filter = "*"
 
 [dev-packages]
 

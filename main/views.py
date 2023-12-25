@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from product.filters import ProductFilter
+
+from product.models import Product
 from .forms import RegisterForm, LoginForm
 
 
@@ -13,7 +16,14 @@ def index(request):
 
 @login_required
 def home(request):
-    return render(request, 'main/home.html')
+    products = Product.objects.all()
+    product_filter=ProductFilter(request.GET, queryset=Product.objects.all())
+    context={
+        'form':product_filter.form,
+        'products':product_filter.qs
+    }
+    return render(request, 'main/home.html', context)
+    #return render(request, 'product/all_products.html', context)
 
 
 def login_view(request):
@@ -57,7 +67,7 @@ def register_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, "account created successfully. Please log in.")
-            return redirect('login')
+            return redirect('main:login')
     else:
         form=RegisterForm()
 
