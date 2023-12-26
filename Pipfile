@@ -9,6 +9,8 @@ crispy-bootstrap5 = "*"
 pillow = "*"
 django-jazzmin = "*"
 django-filter = "*"
+python-decouple = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
