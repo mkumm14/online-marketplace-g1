@@ -11,6 +11,7 @@ django-jazzmin = "*"
 django-filter = "*"
 python-decouple = "*"
 dj-database-url = "*"
+gunicorn = "*"
 
 [dev-packages]
 
