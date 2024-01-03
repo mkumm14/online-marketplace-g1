@@ -1,2 +1,2 @@
-web: gunicorn MMAAS.wsgi --log-file -
+web: gunicorn MMAAS.wsgi
 
