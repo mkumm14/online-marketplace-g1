@@ -58,6 +58,10 @@ INSTALLED_APPS = [
 
 ]
 
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:1337"]
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
