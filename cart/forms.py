@@ -1,7 +1,6 @@
 from django import forms
 """
-This module defines form classes for handling shipping addresses and payment information
-in an online marketplace application using Django's forms framework.
+This module defines form classes for handling shipping addresses and payment information using Django's forms framework.
 Classes:
     ShippingAddressForm (forms.ModelForm):
         A form for creating and updating ShippingAddress instances.
