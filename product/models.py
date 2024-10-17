@@ -1,4 +1,8 @@
 from django.db import models
+
+from django.contrib.auth.models import User
+
+
 """
 This module defines the models for the product application in the online marketplace project.
 Classes:
@@ -18,7 +22,6 @@ Classes:
         Methods:
             __str__(): Returns the name of the product.
 """
-from django.contrib.auth.models import User
 
 # Create your models here.
 
