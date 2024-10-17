@@ -1,4 +1,23 @@
 from django import forms
+"""
+This module defines forms for user authentication and registration using Django and crispy-forms.
+Classes:
+    LoginForm(AuthenticationForm):
+        A form for user login that extends Django's AuthenticationForm.
+        Attributes:
+            Meta: Metadata for the form, specifying the model and fields.
+            __init__(*args, **kwargs): Initializes the form with crispy-forms layout and helper.
+    RegisterForm(UserCreationForm):
+        A form for user registration that extends Django's UserCreationForm.
+        Attributes:
+            first_name (forms.CharField): A required field for the user's first name.
+            last_name (forms.CharField): A required field for the user's last name.
+            email (forms.EmailField): A required field for the user's email address.
+            Meta: Metadata for the form, specifying the model and fields.
+            __init__(*args, **kwargs): Initializes the form with crispy-forms layout and helper, and removes help text from certain fields.
+"""
+
+
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper

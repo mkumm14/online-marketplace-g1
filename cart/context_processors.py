@@ -1,4 +1,13 @@
 from .models import Cart, CartItem
+"""
+Context processor to add the total quantity of items in the user's cart to the context.
+Functions:
+    cart_quantity(request): Returns a dictionary with the total quantity of items in the user's cart.
+    Parameters:
+        request (HttpRequest): The HTTP request object.
+    Returns:
+        dict: A dictionary containing the total quantity of items in the user's cart under the key 'cart_quantity'.
+"""
 
 def cart_quantity(request):
     user = request.user

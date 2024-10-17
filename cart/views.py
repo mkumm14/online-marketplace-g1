@@ -1,5 +1,29 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
+"""
+Views for managing the shopping cart and checkout process in the online marketplace.
+Functions:
+    add_to_cart(request, product_id):
+        Adds a product to the user's cart. If the product is already in the cart, increments the quantity.
+    cart(request):
+        Displays the user's cart with all the items.
+    remove_from_cart(request, cart_item_id):
+        Removes a specific item from the user's cart.
+    increase_cart_item(request, cart_item_id):
+        Increases the quantity of a specific item in the user's cart by one, if stock is available.
+    decrease_cart_item(request, cart_item_id):
+        Decreases the quantity of a specific item in the user's cart by one. If the quantity becomes zero, the item is removed from the cart.
+    apply_discount(request):
+        Applies a discount to the user's cart based on a discount code provided in the POST request.
+    remove_discount(request):
+        Removes any applied discount from the user's cart.
+    checkout(request):
+        Handles the checkout process, including saving shipping address and payment information, creating an order, and clearing the cart.
+    order_success(request):
+        Displays a success message after an order has been successfully placed.
+    order_history(request):
+        Displays the user's order history.
+"""
 from .models import Product, Cart, CartItem, Discount, Order, ShippingAddress, Payment
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -21,7 +45,7 @@ def add_to_cart(request, product_id):
         cart_item.quantity += 1
         cart_item.save()
 
-    return redirect('cart')  # Replace with the URL of your cart view
+    return redirect('cart')
 
 
 

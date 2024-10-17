@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -9,7 +10,28 @@ from product.models import Product
 from .forms import RegisterForm, LoginForm
 
 
-# Create your views here.
+"""
+This module contains views for the online marketplace application.
+Functions:
+    index(request):
+        Renders the index page.
+    home(request):
+        Renders the home page with a list of products. Requires user to be logged in.
+    login_view(request):
+        Handles user login. Redirects authenticated users to the index page.
+    store(request):
+        Renders the store page.
+    cart(request):
+        Renders the cart page.
+    checkout(request):
+        Renders the checkout page.
+    about(request):
+        Renders the about page.
+    register_view(request):
+        Handles user registration. Redirects to the login page upon successful registration.
+    logout_view(request):
+        Logs out the user and redirects to the index page.
+"""
 
 def index(request):
     return render(request,'index.html')

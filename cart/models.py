@@ -1,8 +1,26 @@
 from django.db import models
+"""
+This module defines the models for the cart application, including Discount, Cart, CartItem, ShippingAddress, Payment, and Order.
+Classes:
+    Discount: Model for discount codes. Has a code and discount percentage.
+    Cart: Model for cart. Has a user, items, and discount. Items are linked to the cart through the CartItem model.
+    CartItem: Model for cart items. Has a product, cart, quantity, total price, and discounted price.
+    ShippingAddress: Model for shipping address. Has a user, address line 1, address line 2, city, state, and zip code.
+    Payment: Model for payment. Has a user, card number, card expiry, and card cvv.
+    Order: Model for order. Has a user, shipping address, payment, total cost, and created_at timestamp.
+Methods:
+    Discount.__str__: Returns the discount code as a string.
+    Cart.get_total_cost: Calculates and returns the total cost of the cart, considering discounts.
+    Cart.__str__: Returns a string representation of the cart, including the user's name.
+    CartItem.save: Overrides the save method to calculate the total and discounted prices before saving.
+    CartItem.update_discounted_price: Updates the discounted price based on the cart's discount.
+    ShippingAddress.__str__: Returns a string representation of the shipping address.
+    Payment.__str__: Returns a string representation of the payment, showing the last four digits of the card number.
+    Order.__str__: Returns a string representation of the order, including the order ID and user's username.
+"""
 from django.contrib.auth.models import User
 from product.models import Product
 
-# Create your models here.
 class Discount(models.Model):
     code = models.CharField(max_length=20, unique=True)
     discount_percentage = models.DecimalField(max_digits=4, decimal_places=2)
@@ -73,7 +91,7 @@ class Order(models.Model):
     shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE)
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
-    created_at = models.DateTimeField(auto_now=True)  # Add this line
+    created_at = models.DateTimeField(auto_now=True)  
 
 
     def __str__(self):

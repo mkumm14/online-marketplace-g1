@@ -1,4 +1,23 @@
 from django import forms
+"""
+This module defines form classes for handling shipping addresses and payment information
+in an online marketplace application using Django's forms framework.
+Classes:
+    ShippingAddressForm (forms.ModelForm):
+        A form for creating and updating ShippingAddress instances.
+        Inherits from Django's ModelForm.
+        Meta:
+            model (ShippingAddress): The model associated with this form.
+            fields (tuple): The fields to include in the form.
+    PaymentForm (forms.ModelForm):
+        A form for creating and updating Payment instances.
+        Inherits from Django's ModelForm.
+        Meta:
+            model (Payment): The model associated with this form.
+            fields (list): The fields to include in the form.
+            widgets (dict): Custom widgets for form fields to provide placeholders.
+
+"""
 from .models import ShippingAddress, Payment
 
 class ShippingAddressForm(forms.ModelForm):

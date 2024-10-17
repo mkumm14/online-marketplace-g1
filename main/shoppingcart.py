@@ -5,8 +5,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column,Field, HTML
 from django.urls import reverse
 
-# Online Python compiler (interpreter) to run Python online.
-# Write Python 3 code in this online editor and run itclass ShoppingCart:
+
 
 class Item:
   def __init__(self, name, price):
@@ -15,7 +14,8 @@ class Item:
   def getName(self):
         return self.name
   def getPrice(self):
-        return self.price 
+        return self.price
+   
 class DiscountCode:
   def __init__(self, code, discount_percent):
     self.code = code
