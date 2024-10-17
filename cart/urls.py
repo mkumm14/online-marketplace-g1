@@ -1,7 +1,26 @@
 from django.urls import path
 from . import views
 
-# url patterns for cart app
+
+"""
+URL configuration for the cart application.
+This module defines the URL patterns for the cart-related views in the online marketplace project.
+Routes:
+- '' : Displays the cart page.
+- 'add_to_cart/<int:product_id>/' : Adds a product to the cart.
+- 'remove_from_cart/<int:cart_item_id>/' : Removes an item from the cart.
+- 'increase_cart_item/<int:cart_item_id>/' : Increases the quantity of a cart item.
+- 'decrease_cart_item/<int:cart_item_id>/' : Decreases the quantity of a cart item.
+- 'apply_discount/' : Applies a discount to the cart.
+- 'remove_discount/' : Removes a discount from the cart.
+- 'checkout/' : Initiates the checkout process.
+- 'order_success/' : Displays the order success page.
+- 'order_history/' : Displays the order history page.
+"""
+
+
+
+
 urlpatterns = [
     path('', views.cart, name='cart'),
     path('add_to_cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),

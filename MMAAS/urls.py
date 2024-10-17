@@ -1,18 +1,25 @@
-"""MMAAS URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+URL configuration for the MMAAS project.
+This module defines the URL patterns for the MMAAS project, including the admin interface and 
+various application-specific routes.
+Routes:
+    - 'admin/': Admin site URLs.
+    - '': Main application URLs.
+    - 'products/': Product application URLs.
+    - 'cart/': Cart application URLs.
+If the DEBUG setting is enabled, it also serves media files during development.
+Additionally, it customizes the admin site headers and titles:
+    - site_header: 'MMAAS Administration'
+    - index_title: 'MMAAS Admin'
+    - site_title: 'Administration for MMAAS app'
+Imports:
+    - admin: Django admin module for site administration.
+    - path, include: Django URL handling utilities.
+    - static: Utility for serving static files during development.
+    - settings: Django settings module for accessing project settings.
+"""
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
@@ -25,6 +32,8 @@ urlpatterns = [
 ]
 
 
+
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -32,3 +41,5 @@ if settings.DEBUG:
 admin.site.site_header = 'MMAAS Administration'                    # default: "Django Administration"
 admin.site.index_title = 'MMAAS Admin'                 # default: "Site administration"
 admin.site.site_title = 'Admistration for MMAAS app' # default: "Django site admin"
+
+
